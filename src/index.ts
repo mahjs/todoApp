@@ -11,7 +11,7 @@ class initApp {
   }
 
   mountApp() {
-    document.getElementById("app").innerHTML = this.appendTo;
+    document.getElementById("app")!.innerHTML = this.appendTo;
     this.form.addTodoEvent();
   }
 }

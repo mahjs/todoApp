@@ -1,20 +1,11 @@
 import "./assets/css/style.css";
-
-// This is the main type for each todo item
-interface todo {
-  name: string;
-  description: string;
-  isComplete: boolean;
-  createdAt: Date;
-  lastUpdate?: Date;
-}
+import {Todo} from "./types/Todo";
+import {App as AppInterface} from "./types/App";
 
 // This is the main class that make the whole app functionality.
-export default class App {
+export default class App implements AppInterface {
   //initialize as blank array
-  private toDos: todo[] = [];
-
-  private isEmpty: boolean;
+  private toDos: Todo[] = [];
 
   // This method create the form for adding a new todo app
   createForm(): string {
@@ -42,7 +33,7 @@ export default class App {
 
   // This method handles the add button event for adding new todo
   addTodoEvent(): void {
-    document.querySelector(".add-btn").addEventListener("click", (e) => {
+    document.querySelector(".add-btn")?.addEventListener("click", (e) => {
       const taskNameElement = <HTMLInputElement>(
         document.getElementById("new-task-name")
       );
@@ -98,7 +89,7 @@ export default class App {
     } else {
       liDom = `<li style="text-align: center;color: #898888;font-size: 22px;">Schedule your TODO!!</li>`;
     }
-    document.getElementById("incomplete-tasks").innerHTML = liDom;
+    document.getElementById("incomplete-tasks")!.innerHTML = liDom;
 
     // Setting the checked property of completed tasks
     (
@@ -117,7 +108,7 @@ export default class App {
     deleteBtn.forEach((btn: Node, index: number) => {
       btn.addEventListener("click", () => this.deleteTask(index));
     });
-    completeBtn.forEach((input: HTMLElement, index: number) => {
+    completeBtn.forEach((input: Element, index: number) => {
       input.addEventListener("change", () => this.completeTask(index));
     });
   }
@@ -142,7 +133,7 @@ export default class App {
   // Utils
 
   // Format the date
-  formatDate(date: Date): string {
+  formatDate(date: Date | undefined): string {
     if (!date) return "-";
     const hour = date.getHours();
     const mins = date.getMinutes().toString().padStart(2, "0");
