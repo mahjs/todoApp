@@ -1,7 +1,7 @@
 /* Basic Style */
 
 body {
-	background: #fff;
+	background: linear-gradient(to right, #614385, #516395) ;
 	color: #333;
 	font-family: Lato, sans-serif;
 	background-color:#e4e4e4;
@@ -141,6 +141,9 @@ p {
 
 .list-item > input[type="checkbox"] {
 	margin: 0 1rem;
+	height: 1.2rem;
+	width: 1.2rem;
+	cursor: pointer;
 }
 
 

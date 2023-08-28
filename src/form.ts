@@ -1,4 +1,3 @@
-import {HTML} from "../node_modules/jsx-dom/index";
 import "./assets/css/style.css";
 
 // This is the main type for each todo item
@@ -6,12 +5,15 @@ interface todo {
   name: string;
   description: string;
   isComplete: boolean;
-  lastUpdate: Date;
+  createdAt: Date;
+  lastUpdate?: Date;
 }
 
 // This is the main class that make the whole app functionality.
 export default class Form {
-  private toDos: todo[] = []; //initialize as blank array
+  //initialize as blank array
+  private toDos: todo[] = [];
+
   private isEmpty: boolean;
 
   // This method create the form for adding a new todo app
@@ -54,7 +56,7 @@ export default class Form {
           name: taskNameElement.value,
           description: taskDescElement.value,
           isComplete: false,
-          lastUpdate: new Date(),
+          createdAt: new Date(),
         });
 
         taskNameElement.value = "";
@@ -83,9 +85,12 @@ export default class Form {
                         <span class='item-desc ${
                           li.isComplete ? "completed" : ""
                         }'>${li.description}</span>
-                        <span class='item-last-update'>${this.formatDate(
-                          li.lastUpdate
+                        <span class='item-last-update'>createdAt: ${this.formatDate(
+                          li.createdAt
                         )}</span>
+                        <span class='item-last-update'>
+                          updatedAt: ${this.formatDate(li.lastUpdate)}
+                        </span>
                     </div>
                     <button type="button" class="delete-task">Delete</button>
                  </li>`;
@@ -138,8 +143,9 @@ export default class Form {
 
   // Format the date
   formatDate(date: Date): string {
+    if (!date) return "-";
     const hour = date.getHours();
-    const mins = date.getMinutes();
+    const mins = date.getMinutes().toString().padStart(2, "0");
 
     const day = date.getDate();
     const monthName = date.toLocaleString("default", {month: "short"});
