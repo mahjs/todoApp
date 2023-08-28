@@ -24,7 +24,7 @@ export default class Form {
            <h3>Add Item</h3>
             <div class="input-wrapper">
               <p>
-              <input id="new-task-name" name="new-task-name" value="" type="text" placeholder='Name'/>
+              <input id="new-task-name" name="new-task-name" value="" type="text" placeholder='Title'/>
               </p>
               <p>
               <textarea id="new-task-desc" name="new-task-desc" value="" rows='4' cols='50' placeholder='Description'></textarea>
