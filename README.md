@@ -1,16 +1,21 @@
 # webpack-typescript-todo
-## _Todo app based on webpack and TypeScript_
+
+## Todo app based TypeScript
 
 ### Project setup
+
 ```sh
-yarn install
+npm install
 ```
+
 #### Compiles and hot-reloads for development
+
 ```sh
-yarn dev
+npm start
 ```
+
 #### Production
 
 ```sh
-yarn build
+npm run build
 ```

@@ -1,6 +1,7 @@
 import {HTML} from "../node_modules/jsx-dom/index";
 import "./assets/css/style.css";
 
+// This is the main type for our each todo items
 interface todo {
   name: string;
   description: string;
@@ -8,9 +9,12 @@ interface todo {
   lastUpdate: Date;
 }
 
+// This is the main class that make the whole app functionality.
 export default class Form {
   private toDos: todo[] = []; //initialize as blank array
   private isEmpty: boolean;
+
+  // This method create the form for adding a new todo app
   createForm(): string {
     return `<form>
         <div class="container">
@@ -33,6 +37,8 @@ export default class Form {
         </div>
      </form>`;
   }
+
+  // This method handles the add button event for adding new todo
   addTodoEvent(): void {
     document.querySelector(".add-btn").addEventListener("click", (e) => {
       const taskNameElement = <HTMLInputElement>(
@@ -61,6 +67,9 @@ export default class Form {
       }
     });
   }
+
+  // This method functionality is to render the todos on the screen and every time
+  // any item is updated
   displayingTaskList(): void {
     let liDom: string = "";
     if (this.toDos.length) {
@@ -86,7 +95,7 @@ export default class Form {
     }
     document.getElementById("incomplete-tasks").innerHTML = liDom;
 
-    // Settign the checked property of completed tasks
+    // Setting the checked property of completed tasks
     (
       document.querySelectorAll(".checkbox") as NodeListOf<HTMLInputElement>
     ).forEach((checkbox, index) => {
@@ -94,6 +103,8 @@ export default class Form {
       checkbox.checked = checked;
     });
   }
+
+  // This method adds the delete and updated event handlere to every item in the showed list
   addEventToTask() {
     let deleteBtn = document.querySelectorAll(".delete-task") as NodeList; // querySelectorAll return nodelist
     let completeBtn: NodeListOf<Element> =
@@ -105,11 +116,15 @@ export default class Form {
       input.addEventListener("change", () => this.completeTask(index));
     });
   }
+
+  // This method actually delete a tast based on it's index
   deleteTask(id: number): any {
     this.toDos.splice(id, 1);
     this.displayingTaskList();
     this.addEventToTask();
   }
+
+  // This method mark a tast as completed based on it's index
   completeTask(id: number): any {
     const task = this.toDos[id];
     task.isComplete = !task.isComplete;
@@ -120,6 +135,8 @@ export default class Form {
   }
 
   // Utils
+
+  // Format the date
   formatDate(date: Date): string {
     const hour = date.getHours();
     const mins = date.getMinutes();

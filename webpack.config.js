@@ -4,7 +4,7 @@ module.exports = {
     mode: 'development',
     entry: './src/index.ts',
     output: {
-        path:path.resolve(__dirname, 'dist'),
+        path:path.resolve(__dirname, 'output'),
         filename: 'bundle.js' 
     },
     resolve: {
@@ -25,7 +25,7 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            title: 'Todo',
+            title: 'Todo App',
             template: './src/index.html',
             filename: 'index.html'
         })
