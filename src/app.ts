@@ -33,13 +33,19 @@ export default class App implements AppInterface {
 
   // This method handles the add button event for adding new todo
   addTodoEvent(): void {
+    // Adding the event listener to the Add Button
     document.querySelector(".add-btn")?.addEventListener("click", (e) => {
+      // Name/Title of task
       const taskNameElement = <HTMLInputElement>(
         document.getElementById("new-task-name")
       );
+
+      // Description of task
       const taskDescElement = <HTMLInputElement>(
         document.getElementById("new-task-desc")
       );
+
+      // if name/title and description isn't empty:
       if (taskNameElement.value && taskDescElement.value) {
         (<HTMLInputElement>document.querySelector(".empty")).style.display =
           "none";
@@ -54,7 +60,9 @@ export default class App implements AppInterface {
         taskDescElement.value = "";
         this.displayingTaskList();
         this.addEventToTask();
-      } else {
+      }
+      // if name/title or description is empty:
+      else {
         const emptyInput = document.querySelector(".empty") as HTMLInputElement;
         emptyInput.style.display = "block";
       }
@@ -64,6 +72,7 @@ export default class App implements AppInterface {
   // This method functionality is to render the todos on the screen and every time
   // any item is updated
   displayingTaskList(): void {
+    // Variable for holding the markup of all tasks
     let liDom: string = "";
     if (this.toDos.length) {
       this.toDos.forEach((li, index) => {
@@ -89,6 +98,7 @@ export default class App implements AppInterface {
     } else {
       liDom = `<li style="text-align: center;color: #898888;font-size: 22px;">Schedule your TODO!!</li>`;
     }
+    // Adding the tasks to document (rendering them)
     document.getElementById("incomplete-tasks")!.innerHTML = liDom;
 
     // Setting the checked property of completed tasks
@@ -102,12 +112,17 @@ export default class App implements AppInterface {
 
   // This method adds the delete and updated event handlere to every item in the showed list
   addEventToTask() {
+    // Gettign all the delete buttons in order
     let deleteBtn = document.querySelectorAll(".delete-task") as NodeList; // querySelectorAll return nodelist
-    let completeBtn: NodeListOf<Element> =
-      document.querySelectorAll("li input");
+    // Adding event listener for each of the buttons
     deleteBtn.forEach((btn: Node, index: number) => {
       btn.addEventListener("click", () => this.deleteTask(index));
     });
+
+    // Gettign all the checkbox/complete button in order
+    let completeBtn: NodeListOf<Element> =
+      document.querySelectorAll("li input");
+    // Adding event listeners
     completeBtn.forEach((input: Element, index: number) => {
       input.addEventListener("change", () => this.completeTask(index));
     });
@@ -116,6 +131,8 @@ export default class App implements AppInterface {
   // This method actually delete a tast based on it's index
   deleteTask(id: number): any {
     this.toDos.splice(id, 1);
+
+    // Updatign the ui after a deletion
     this.displayingTaskList();
     this.addEventToTask();
   }
@@ -126,6 +143,7 @@ export default class App implements AppInterface {
     task.isComplete = !task.isComplete;
     task.lastUpdate = new Date();
 
+    // Updating the ui after a change
     this.displayingTaskList();
     this.addEventToTask();
   }
