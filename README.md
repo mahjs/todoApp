@@ -1,8 +1,8 @@
 # typescript-todo-app
 
-## Todo app based TypeScript
+## Todo app based on TypeScript
 
-#### This app is a simple app that let make a simple crud task manager for your daily needs
+#### This is a simple app that let you handle your tasks with a CRUD functionality.
 
 ### Project setup
 
