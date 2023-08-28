@@ -1,12 +1,12 @@
 // This file is the bootstrap file for the whole app
 
-import Form from "./form";
+import App from "./app";
 class initApp {
   public appendTo: string;
   public form: any;
 
   constructor() {
-    this.form = new Form();
+    this.form = new App();
     this.appendTo = this.form.createForm();
   }
 

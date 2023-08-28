@@ -10,7 +10,7 @@ interface todo {
 }
 
 // This is the main class that make the whole app functionality.
-export default class Form {
+export default class App {
   //initialize as blank array
   private toDos: todo[] = [];
 
