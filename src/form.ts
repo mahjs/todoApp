@@ -1,7 +1,7 @@
 import {HTML} from "../node_modules/jsx-dom/index";
 import "./assets/css/style.css";
 
-// This is the main type for our each todo items
+// This is the main type for each todo item
 interface todo {
   name: string;
   description: string;
