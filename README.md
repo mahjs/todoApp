@@ -1,6 +1,8 @@
-# webpack-typescript-todo
+# typescript-todo-app
 
 ## Todo app based TypeScript
+
+#### This app is a simple app that let make a simple crud task manager for your daily needs
 
 ### Project setup
 
